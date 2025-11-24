@@ -17,7 +17,7 @@ public class App extends Application {
                 App.class.getResource("primary.fxml")
         );
 
-        scene = new Scene(fxmlLoader.load(), 800, 600);
+        scene = new Scene(fxmlLoader.load());
         stage.setTitle("Totem de Energéticos");
         stage.setScene(scene);
         stage.show();
