@@ -4,6 +4,6 @@ public class DescontoCombo implements ICalculadoraDescontos {
 
     @Override
     public double aplicarDesconto(double total) {
-        return total - 5; // desconto fixo
+        return total - 5;
     }
 }
