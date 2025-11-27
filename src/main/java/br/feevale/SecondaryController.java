@@ -21,6 +21,9 @@ public class SecondaryController {
     private Label lblTotalAPagar;
 
     @FXML
+    private Button btnSeguirPagamento;
+
+    @FXML
     private Label lblSubtotal;
 
     @FXML
@@ -33,6 +36,8 @@ public class SecondaryController {
     public void initialize() {
         configurarListaCarrinho();
         atualizarCarrinho();
+        // esconder o botão de seguimento se o carrinho estiver vazio
+        btnSeguirPagamento.setVisible(!Carrinho.getItens().isEmpty());
     }
 
     private void configurarListaCarrinho() {
@@ -109,6 +114,7 @@ public class SecondaryController {
         listaCarrinho.getItems().clear();
         listaCarrinho.getItems().addAll(Carrinho.getItens());
         atualizarTotais();
+        btnSeguirPagamento.setVisible(!Carrinho.getItens().isEmpty());
     }
 
     private void atualizarTotais() {
