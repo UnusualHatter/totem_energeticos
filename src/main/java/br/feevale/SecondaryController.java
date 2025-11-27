@@ -44,23 +44,19 @@ public class SecondaryController {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    // HBox com layout: [nome x quantidade] [espaço] [botão -] [botão +]
                     HBox container = new HBox(10);
                     container.setStyle("-fx-padding: 5px;");
                     container.setAlignment(Pos.CENTER_LEFT);
 
-                    // Label com produto e quantidade
                     String texto = item.getProduto().getNome() + " (" + item.getProduto().getMl() 
                         + "ml) - R$ " + String.format("%.2f", item.getProduto().getPreco()) 
                         + " x" + item.getQuantidade();
                     javafx.scene.control.Label labelProduto = new javafx.scene.control.Label(texto);
                     labelProduto.setStyle("-fx-font-size: 12px;");
 
-                    // Espaço para separar produto dos botões
                     HBox espacador = new HBox();
                     HBox.setHgrow(espacador, Priority.ALWAYS);
 
-                    // Botão - (diminuir quantidade)
                     Button btnMenos = new Button("-");
                     btnMenos.setStyle(
                         "-fx-font-size: 14px; " +
@@ -76,16 +72,13 @@ public class SecondaryController {
 
                     btnMenos.setOnAction(event -> {
                         if (item.getQuantidade() == 1) {
-                            // Remove o item do carrinho se quantidade é 1
                             Carrinho.removerItem(item);
                         } else {
-                            // Reduz a quantidade
                             item.decrementar();
                         }
                         atualizarCarrinho();
                     });
 
-                    // Botão + (aumentar quantidade)
                     Button btnMais = new Button("+");
                     btnMais.setStyle(
                         "-fx-font-size: 14px; " +
@@ -130,7 +123,6 @@ public class SecondaryController {
             totalComDesconto += item.getTotalComDesconto();
             totalDescontos += item.getDesconto();
 
-            // Adiciona detalhamento de desconto apenas se houver desconto
             if (item.getDesconto() > 0) {
                 String descricaoDesconto = item.getProduto().getNome() + ": -R$ " 
                     + String.format("%.2f", item.getDesconto());

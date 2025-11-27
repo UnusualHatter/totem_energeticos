@@ -4,6 +4,6 @@ public class DescontoCartao implements ICalculadoraDescontos {
 
     @Override
     public double aplicarDesconto(double total) {
-        return total * 0.90; // 10% de desconto
+        return total * 0.90;
     }
 }

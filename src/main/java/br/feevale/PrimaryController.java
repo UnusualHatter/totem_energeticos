@@ -24,14 +24,10 @@ public class PrimaryController {
 
     @FXML
     private ListView<ProdutoEnergetico> listaProdutos;
-
-    // Set para rastrear produtos que estão em destaque (verde)
     private Set<String> produtosEmDestaque = new HashSet<>();
 
     @FXML
     public void initialize() {
-
-        // === PRODUTOS DO CATÁLOGO (preenchidos no carregamento da tela) ===
         cardapio.adicionarProduto(new ProdutoEnergetico("Red Bull", 8.99, 250, "Red Bull", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("Monster Energy", 10.99, 473, "Monster", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("TNT Energy Drink", 6.99, 269, "TNT", 0, null));
@@ -63,12 +59,10 @@ public class PrimaryController {
         cardapio.adicionarProduto(new ProdutoEnergetico("Bivolt", 8.50, 2000, "Bivolt", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("Itts", 11.00, 269, "Itts", 0, null));
 
-        // === CRIA OS BOTÕES DINÂMICOS PARA CADA PRODUTO ===
         for (ProdutoEnergetico p : cardapio.getProdutos()) {
             listaProdutos.getItems().add(p);
         }
 
-        // === CONFIGURAR CELL FACTORY COM DUPLO CLIQUE ===
         listaProdutos.setCellFactory(lv -> new ListCell<ProdutoEnergetico>() {
             @Override
             protected void updateItem(ProdutoEnergetico produto, boolean empty) {
@@ -79,7 +73,6 @@ public class PrimaryController {
                     setStyle("");
                 } else {
                     setText(produto.toString());
-                    // Verificar se este produto está em destaque
                     if (produtosEmDestaque.contains(produto.getNome())) {
                         setStyle("-fx-padding: 5px; -fx-background-color: #90EE90;");
                     } else {
@@ -89,7 +82,6 @@ public class PrimaryController {
             }
         });
 
-        // === ADICIONAR EVENTO DE DUPLO CLIQUE ===
         listaProdutos.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2 && event.getButton() == MouseButton.PRIMARY) {
                 ProdutoEnergetico produtoSelecionado = listaProdutos.getSelectionModel().getSelectedItem();
@@ -101,18 +93,11 @@ public class PrimaryController {
     }
 
     private void adicionarAoCarrinhoComFeedback(ProdutoEnergetico produto) {
-        // Adicionar ao carrinho
         Carrinho.adicionar(produto);
-
-        // Adicionar ao conjunto de produtos em destaque
         produtosEmDestaque.add(produto.getNome());
-
-        // Fazer refresh para aplicar o estilo verde
         listaProdutos.refresh();
-
         System.out.println("Adicionado ao carrinho: " + produto.getNome());
 
-        // Remover do destaque após 500ms
         Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), animEvent -> {
             produtosEmDestaque.remove(produto.getNome());
             listaProdutos.refresh();

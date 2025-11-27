@@ -26,8 +26,6 @@ public class TotemController {
 
     @FXML
     public void initialize() {
-
-        // Adicionar produtos
         cardapio.adicionarProduto(new ProdutoEnergetico("Red Bull", 8.99, 250, "Red Bull", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("Monster Energy", 10.99, 473, "Monster", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("TNT Energy Drink", 6.99, 269, "TNT", 0, null));
@@ -59,7 +57,6 @@ public class TotemController {
         cardapio.adicionarProduto(new ProdutoEnergetico("Bivolt", 8.50, 2000, "Bivolt", 0, null));
         cardapio.adicionarProduto(new ProdutoEnergetico("Itts", 11.00, 269, "Itts", 0, null));
 
-        // Agrupar produtos em pares
         List<List<ProdutoEnergetico>> linhas = new ArrayList<>();
         List<ProdutoEnergetico> temp = new ArrayList<>();
 
@@ -77,7 +74,6 @@ public class TotemController {
 
         listaProdutos.getItems().addAll(linhas);
 
-        // Renderizador customizado
         listaProdutos.setCellFactory(list -> new ListCell<>() {
             @Override
             protected void updateItem(List<ProdutoEnergetico> linha, boolean empty) {
@@ -99,7 +95,6 @@ public class TotemController {
 
                     btn.setOnAction(e -> {
                         System.out.println("Adicionado: " + p.getNome());
-                        // aqui você adiciona ao pedido
                     });
 
                     card.getChildren().addAll(btn);

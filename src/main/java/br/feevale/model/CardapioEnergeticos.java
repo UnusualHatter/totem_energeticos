@@ -8,7 +8,6 @@ public class CardapioEnergeticos {
     private List<ProdutoEnergetico> produtos = new ArrayList<>();
 
     public CardapioEnergeticos() {
-        // Produtos iniciais
         produtos.add(new ProdutoEnergetico("Red Bull", 8.99, 250, "Red Bull", 0, null));
         produtos.add(new ProdutoEnergetico("Monster Energy", 10.99, 473, "Monster", 0, null));
         produtos.add(new ProdutoEnergetico("TNT Energy Drink", 6.99, 269, "TNT", 0, null));
